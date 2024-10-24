@@ -1,0 +1,423 @@
+openapi: 3.0.3
+info:
+  title: 'JOBSTER BACKEND'
+  description: 'API Documentation JobSeeker Wkwk'
+  version: 1.0.0
+servers:
+  -
+    url: 'http://localhost:7700'
+paths:
+  /api/v1/admin/job-title:
+    get:
+      summary: ''
+      operationId: getApiV1AdminJobTitle
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Authorization header is required'
+                properties:
+                  message:
+                    type: string
+                    example: 'Authorization header is required'
+      tags:
+        - Admin
+      security: []
+    post:
+      summary: ''
+      operationId: postApiV1AdminJobTitle
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Admin
+      security: []
+  '/api/v1/admin/job-title/{id}':
+    get:
+      summary: ''
+      operationId: getApiV1AdminJobTitleId
+      description: ''
+      parameters: []
+      responses:
+        401:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Authorization header is required'
+                properties:
+                  message:
+                    type: string
+                    example: 'Authorization header is required'
+      tags:
+        - Admin
+      security: []
+    put:
+      summary: ''
+      operationId: putApiV1AdminJobTitleId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Admin
+      security: []
+    delete:
+      summary: ''
+      operationId: deleteApiV1AdminJobTitleId
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Admin
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the job title.'
+        example: odit
+        required: true
+        schema:
+          type: string
+  /api/v1/admin/posts:
+    post:
+      summary: 'Add a post or job'
+      operationId: addAPostOrJob
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Admin
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                job_title_id:
+                  type: integer
+                  description: 'Job Title.'
+                  example: null
+                  nullable: false
+                post_title:
+                  type: string
+                  description: 'Post Title.'
+                  example: null
+                  nullable: false
+                location:
+                  type: string
+                  description: Location.
+                  example: null
+                  nullable: false
+                overview:
+                  type: string
+                  description: Overview.
+                  example: null
+                  nullable: false
+                responsabilities:
+                  type: string
+                  description: Responsabilites.
+                  example: null
+                  nullable: false
+                requirements:
+                  type: string
+                  description: Requirements.
+                  example: null
+                  nullable: false
+                skills:
+                  type: string
+                  description: Skills.
+                  example: null
+                  nullable: false
+                experience_year:
+                  type: integer
+                  description: 'Experience Year.'
+                  example: null
+                  nullable: false
+                employment_type:
+                  type: string
+                  description: 'Employment Type.'
+                  example: null
+                  nullable: false
+                level_type:
+                  type: string
+                  description: 'Level Type.'
+                  example: null
+                  nullable: false
+                salary:
+                  type: integer
+                  description: Salary.
+                  example: null
+                  nullable: false
+              required:
+                - job_title_id
+                - post_title
+                - location
+                - overview
+                - responsabilities
+                - requirements
+                - skills
+                - experience_year
+                - employment_type
+                - level_type
+                - salary
+      security: []
+  /api/v1/auth/login:
+    post:
+      summary: Login
+      operationId: login
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Auth
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'required. The email user'
+                  example: kopnus@example.com
+                  nullable: false
+                password:
+                  type: string
+                  description: 'required. The password user'
+                  example: Secret12345
+                  nullable: false
+      security: []
+  /api/v1/auth/register:
+    post:
+      summary: 'Register a user'
+      operationId: registerAUser
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Auth
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                email:
+                  type: string
+                  description: 'Must be a valid email address. Must not be greater than 100 characters.'
+                  example: lgibson@example.net
+                  nullable: false
+                name:
+                  type: string
+                  description: 'Must be at least 3 characters. Must not be greater than 255 characters.'
+                  example: irdgkzhulaqfysez
+                  nullable: false
+                user_type:
+                  type: string
+                  description: ''
+                  example: applier
+                  nullable: false
+                  enum:
+                    - company
+                    - applier
+                password:
+                  type: string
+                  description: ''
+                  example: 'l2EOLssP-5m7"C['
+                  nullable: false
+                confirm_password:
+                  type: string
+                  description: 'The value and <code>password</code> must match.'
+                  example: praesentium
+                  nullable: false
+              required:
+                - email
+                - name
+                - user_type
+                - password
+                - confirm_password
+      security: []
+  /api/v1/auth/me:
+    post:
+      summary: 'Get Profile'
+      operationId: getProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Auth
+      security: []
+  /api/v1/auth/update:
+    post:
+      summary: 'Update Profile'
+      operationId: updateProfile
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Auth
+      security: []
+  /api/v1/posts:
+    get:
+      summary: 'Get list post paginate'
+      operationId: getListPostPaginate
+      description: ''
+      parameters:
+        -
+          in: query
+          name: page
+          description: 'The number page'
+          example: 1
+          required: false
+          schema:
+            type: integer
+            description: 'The number page'
+            example: 1
+            nullable: false
+        -
+          in: query
+          name: per_page
+          description: 'The limit of posts or jobs displayed.'
+          example: 10
+          required: false
+          schema:
+            type: integer
+            description: 'The limit of posts or jobs displayed.'
+            example: 10
+            nullable: false
+        -
+          in: query
+          name: search
+          description: 'Search for posts or jobs'
+          example: null
+          required: false
+          schema:
+            type: string
+            description: 'Search for posts or jobs'
+            example: null
+            nullable: false
+      responses:
+        200:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  data: []
+                  pagination:
+                    current_page: 19
+                    last_page: 1
+                    per_page: 4
+                    total: 3
+                properties:
+                  data:
+                    type: array
+                    example: []
+                  pagination:
+                    type: object
+                    properties:
+                      current_page:
+                        type: integer
+                        example: 19
+                      last_page:
+                        type: integer
+                        example: 1
+                      per_page:
+                        type: integer
+                        example: 4
+                      total:
+                        type: integer
+                        example: 3
+      tags:
+        - Post
+      requestBody:
+        required: false
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                page:
+                  type: integer
+                  description: ''
+                  example: 19
+                  nullable: true
+                per_page:
+                  type: integer
+                  description: ''
+                  example: 4
+                  nullable: true
+      security: []
+  '/api/v1/posts/{id}':
+    get:
+      summary: 'Get Post by ID'
+      operationId: getPostByID
+      description: ''
+      parameters: []
+      responses:
+        404:
+          description: ''
+          content:
+            application/json:
+              schema:
+                type: object
+                example:
+                  message: 'Job 15 Not Found'
+                properties:
+                  message:
+                    type: string
+                    example: 'Job 15 Not Found'
+      tags:
+        - Post
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post'
+        example: 15
+        required: true
+        schema:
+          type: integer
+  '/api/v1/posts/apply/{id}':
+    post:
+      summary: 'Apply Job'
+      operationId: applyJob
+      description: ''
+      parameters: []
+      responses: {  }
+      tags:
+        - Post
+      security: []
+    parameters:
+      -
+        in: path
+        name: id
+        description: 'The ID of the post'
+        example: 6
+        required: true
+        schema:
+          type: integer
+tags:
+  -
+    name: Admin
+    description: "\nAdmin Management"
+  -
+    name: Auth
+    description: "\nAPIs for auth"
+  -
+    name: Post
+    description: ''
