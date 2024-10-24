@@ -100,8 +100,8 @@ final class PostController extends Controller
         DB::table('post_applies')->insert([
             'post_id' => $id,
             'user_id' => $user_id,
-            'created_at' => 'now()',
-            'updated_at' => 'now()',
+            'created_at' => date('Y-m-d H:i:s'),
+            'updated_at' => date('Y-m-d H:i:s'),
         ]);
 
         return $this->successResponse(null, 'Success Apply Job');

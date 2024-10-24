@@ -85,8 +85,8 @@ class PostSeeder extends Seeder
                 'level_type' => $level_array[rand(0, count($level_array)-1)],
                 'salary' => 15_000_000,
                 'total_applied' => 0,
-                'created_at' => 'now()',
-                'updated_at' => 'now()',
+                'created_at' => date('Y-m-d H:i:s'),
+                'updated_at' => date('Y-m-d H:i:s'),
             ];
         }
 
