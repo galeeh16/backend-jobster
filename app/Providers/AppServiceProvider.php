@@ -4,8 +4,10 @@ namespace App\Providers;
 
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Database\Events\QueryExecuted;
+use Illuminate\Contracts\Auth\Authenticatable;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -28,6 +30,10 @@ class AppServiceProvider extends ServiceProvider
                 'query' => $queryExecuted->sql,
                 'bindings' => $queryExecuted->bindings,
             ]);
+        });
+
+        Gate::define('can-modify', function (Authenticatable $user, $user_id) {
+            return $user->id === $user_id;
         });
     }
 }

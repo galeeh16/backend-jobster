@@ -10,7 +10,7 @@
     ],
     "info": {
         "name": "JOBSTER BACKEND",
-        "_postman_id": "f2e0b6f9-a128-42bc-80bf-f37a2001fc78",
+        "_postman_id": "6fca1d15-e185-4229-b7ba-4063df10b317",
         "description": "API Documentation JobSeeker Wkwk",
         "schema": "https:\/\/schema.getpostman.com\/json\/collection\/v2.1.0\/collection.json"
     },
@@ -24,7 +24,7 @@
                     "description": "CRUD Job Title",
                     "item": [
                         {
-                            "name": "GET api\/v1\/admin\/job-title",
+                            "name": "Get list job title paginate",
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
@@ -34,6 +34,10 @@
                                 },
                                 "method": "GET",
                                 "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    },
                                     {
                                         "key": "Content-Type",
                                         "value": "application\/json"
@@ -62,7 +66,7 @@
                                         },
                                         {
                                             "key": "x-trace-id",
-                                            "value": "43f3abf6-7dad-4161-9b0e-6b897a84d995"
+                                            "value": "14681606-d116-4715-bc32-269cd713ec44"
                                         },
                                         {
                                             "key": "access-control-allow-origin",
@@ -70,13 +74,13 @@
                                         }
                                     ],
                                     "code": 401,
-                                    "body": "{\"message\":\"Authorization header is required\"}",
+                                    "body": "{\"message\":\"Wrong number of segments\",\"data\":null}",
                                     "name": ""
                                 }
                             ]
                         },
                         {
-                            "name": "POST api\/v1\/admin\/job-title",
+                            "name": "Create Job Title",
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
@@ -87,6 +91,10 @@
                                 "method": "POST",
                                 "header": [
                                     {
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    },
+                                    {
                                         "key": "Content-Type",
                                         "value": "application\/json"
                                     },
@@ -95,7 +103,10 @@
                                         "value": "application\/json"
                                     }
                                 ],
-                                "body": null,
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"title_name\":\"corporis\"}"
+                                },
                                 "description": "",
                                 "auth": {
                                     "type": "noauth"
@@ -104,7 +115,7 @@
                             "response": []
                         },
                         {
-                            "name": "GET api\/v1\/admin\/job-title\/{id}",
+                            "name": "Get job title by ID",
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
@@ -115,13 +126,17 @@
                                         {
                                             "id": "id",
                                             "key": "id",
-                                            "value": "odit",
-                                            "description": "The ID of the job title."
+                                            "value": "6",
+                                            "description": "The ID of job title. No-Example"
                                         }
                                     ]
                                 },
                                 "method": "GET",
                                 "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    },
                                     {
                                         "key": "Content-Type",
                                         "value": "application\/json"
@@ -150,7 +165,7 @@
                                         },
                                         {
                                             "key": "x-trace-id",
-                                            "value": "5a186b37-9e3a-4c1d-b859-c69e26cd7167"
+                                            "value": "8be3f776-71ed-4c4c-ab7f-1ddaf8f2c2eb"
                                         },
                                         {
                                             "key": "access-control-allow-origin",
@@ -158,13 +173,13 @@
                                         }
                                     ],
                                     "code": 401,
-                                    "body": "{\"message\":\"Authorization header is required\"}",
+                                    "body": "{\"message\":\"Wrong number of segments\",\"data\":null}",
                                     "name": ""
                                 }
                             ]
                         },
                         {
-                            "name": "PUT api\/v1\/admin\/job-title\/{id}",
+                            "name": "Update job title by ID",
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
@@ -175,13 +190,17 @@
                                         {
                                             "id": "id",
                                             "key": "id",
-                                            "value": "accusamus",
-                                            "description": "The ID of the job title."
+                                            "value": "1",
+                                            "description": "the ID of job title. No-Example"
                                         }
                                     ]
                                 },
                                 "method": "PUT",
                                 "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    },
                                     {
                                         "key": "Content-Type",
                                         "value": "application\/json"
@@ -191,7 +210,10 @@
                                         "value": "application\/json"
                                     }
                                 ],
-                                "body": null,
+                                "body": {
+                                    "mode": "raw",
+                                    "raw": "{\"title_name\":\"quis\"}"
+                                },
                                 "description": "",
                                 "auth": {
                                     "type": "noauth"
@@ -200,7 +222,7 @@
                             "response": []
                         },
                         {
-                            "name": "DELETE api\/v1\/admin\/job-title\/{id}",
+                            "name": "Delete job title by ID",
                             "request": {
                                 "url": {
                                     "host": "{{baseUrl}}",
@@ -211,13 +233,17 @@
                                         {
                                             "id": "id",
                                             "key": "id",
-                                            "value": "consectetur",
-                                            "description": "The ID of the job title."
+                                            "value": "13",
+                                            "description": "the ID of job title. No-Example"
                                         }
                                     ]
                                 },
                                 "method": "DELETE",
                                 "header": [
+                                    {
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                    },
                                     {
                                         "key": "Content-Type",
                                         "value": "application\/json"
@@ -316,6 +342,38 @@
                     "response": []
                 },
                 {
+                    "name": "Refresh Token",
+                    "request": {
+                        "url": {
+                            "host": "{{baseUrl}}",
+                            "path": "api\/v1\/auth\/refresh",
+                            "query": [],
+                            "raw": "{{baseUrl}}\/api\/v1\/auth\/refresh"
+                        },
+                        "method": "POST",
+                        "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            },
+                            {
+                                "key": "Content-Type",
+                                "value": "application\/json"
+                            },
+                            {
+                                "key": "Accept",
+                                "value": "application\/json"
+                            }
+                        ],
+                        "body": null,
+                        "description": "",
+                        "auth": {
+                            "type": "noauth"
+                        }
+                    },
+                    "response": []
+                },
+                {
                     "name": "Register a user",
                     "request": {
                         "url": {
@@ -337,7 +395,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"email\":\"lgibson@example.net\",\"name\":\"irdgkzhulaqfysez\",\"user_type\":\"applier\",\"password\":\"l2EOLssP-5m7\\\"C[\",\"confirm_password\":\"praesentium\"}"
+                            "raw": "{\"email\":\"swift.ericka@example.com\",\"name\":\"hhcbaolroafhfdcskntxlyein\",\"user_type\":\"applier\",\"password\":\"<V\\\\j\\\"o`Ov\",\"confirm_password\":\"id\"}"
                         },
                         "description": "",
                         "auth": {
@@ -457,7 +515,7 @@
                         ],
                         "body": {
                             "mode": "raw",
-                            "raw": "{\"page\":19,\"per_page\":4}"
+                            "raw": "{\"page\":9,\"per_page\":2}"
                         },
                         "description": "",
                         "auth": {
@@ -477,7 +535,7 @@
                                 },
                                 {
                                     "key": "x-trace-id",
-                                    "value": "1efab61f-24b3-41c5-b9c0-3dcbd38006cb"
+                                    "value": "cd628898-c4d7-4838-b1f9-64f87da02c98"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
@@ -485,7 +543,7 @@
                                 }
                             ],
                             "code": 200,
-                            "body": "{\"data\":[],\"pagination\":{\"current_page\":19,\"last_page\":1,\"per_page\":4,\"total\":3}}",
+                            "body": "{\"data\":[{\"id\":18,\"job_title\":{\"id\":15,\"title_name\":\"IT Operational\",\"created_at\":\"2024-10-24T09:22:20.000000Z\",\"updated_at\":null},\"post_title\":\"Hand Presser\",\"location\":\"Jakarta\",\"level_type\":\"Junior\",\"employment_type\":\"Work From Home\",\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"created_at_human\":\"2 months ago\",\"updated_at\":\"2024-10-24T09:22:21.000000Z\",\"company\":{\"id\":5,\"email\":\"sinarmas@example.com\",\"name\":\"Sinarmas\",\"user_type\":\"company\",\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"company_profile\":{\"id\":3,\"company_name\":null,\"address\":\"Jalan Merdeka\",\"location\":\"Jakarta\",\"about_company\":null,\"company_size\":10000,\"founded_in\":\"1986-01-01\",\"photo\":\"http:\\\/\\\/localhost:7700\\\/storage\\\/assets\\\/no-image.jpeg\",\"website_url\":null,\"facebook_url\":null,\"instagram_url\":null,\"twitter_url\":null,\"linked_in_url\":null,\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"updated_at\":\"2024-10-24T09:22:21.000000Z\"}}},{\"id\":1,\"job_title\":{\"id\":14,\"title_name\":\"IT Infrastructure\",\"created_at\":\"2024-10-24T09:22:20.000000Z\",\"updated_at\":null},\"post_title\":\"Library Science Teacher\",\"location\":\"Medan\",\"level_type\":\"Middle\",\"employment_type\":\"Remote\",\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"created_at_human\":\"2 months ago\",\"updated_at\":\"2024-10-24T09:22:21.000000Z\",\"company\":{\"id\":5,\"email\":\"sinarmas@example.com\",\"name\":\"Sinarmas\",\"user_type\":\"company\",\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"company_profile\":{\"id\":3,\"company_name\":null,\"address\":\"Jalan Merdeka\",\"location\":\"Jakarta\",\"about_company\":null,\"company_size\":10000,\"founded_in\":\"1986-01-01\",\"photo\":\"http:\\\/\\\/localhost:7700\\\/storage\\\/assets\\\/no-image.jpeg\",\"website_url\":null,\"facebook_url\":null,\"instagram_url\":null,\"twitter_url\":null,\"linked_in_url\":null,\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"updated_at\":\"2024-10-24T09:22:21.000000Z\"}}}],\"pagination\":{\"current_page\":9,\"last_page\":25,\"per_page\":2,\"total\":50}}",
                             "name": ""
                         }
                     ]
@@ -502,7 +560,7 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "15",
+                                    "value": "18",
                                     "description": "The ID of the post"
                                 }
                             ]
@@ -537,15 +595,15 @@
                                 },
                                 {
                                     "key": "x-trace-id",
-                                    "value": "5f198efd-0e85-4f49-8fb2-98bb9d3f7572"
+                                    "value": "99752fc9-5ba0-44cd-b9c7-fd69e13e69bc"
                                 },
                                 {
                                     "key": "access-control-allow-origin",
                                     "value": "*"
                                 }
                             ],
-                            "code": 404,
-                            "body": "{\"message\":\"Job 15 Not Found\"}",
+                            "code": 200,
+                            "body": "{\"message\":\"Success\",\"data\":{\"id\":18,\"post_title\":\"Hand Presser\",\"location\":\"Jakarta\",\"overview\":\"As a Human Resources Coordinator, you will work within a Product Delivery Team fused with UX, engineering, product and data talent. You will help the team design beautiful interfaces that solve business challenges for our clients. We work with a number of Tier 1 banks on building web-based applications for AML, KYC and Sanctions List management workflows. This role is ideal if you are looking to segue your career into the FinTech or Big Data arenas.\",\"responsablities\":\"<ul>\\n<li>Be involved in every step of the product design cycle from discovery to developer handoff and user acceptance testing.<\\\/li>\\n<li>Work with BAs, product managers, and tech teams to lead the Product Design.<\\\/li>\\n<li>Maintain quality of the design process and ensure that when designs are translated into code they accurately reflect the design specifications.<\\\/li>\\n<li>Accurately estimate design tickets during planning sessions.<\\\/li>\\n<li>Contribute to sketching sessions involving non-designers.<\\\/li>\\n<li>Create, iterate and maintain UI deliverables including sketch files, style guides, high fidelity prototypes, micro interaction specifications, and pattern libraries.<\\\/li>\\n<li>Ensure design choices are data led by identifying assumptions to test each sprint, and work with the analysts in your team to plan moderated usability test sessions.<\\\/li>\\n<li>Design pixel perfect responsive UI's and understand that adopting common interface patterns is better for UX than reinventing the wheel.<\\\/li>\\n<li>Present your work to the wider business at Show & Tell sessions.<\\\/li>\\n<\\\/ul>\",\"requirements\":\"<ul>\\n<li>4+ years of system administration experience with the Microsoft Server platform (2012\\\/2016, Microsoft IIS, Active Directory).<\\\/li>\\n<li>3+ years of hands-on system administration experience with AWS (EC2, Elastic Load Balancing, Multi AZ, etc.).<\\\/li>\\n<li>4+ years of SQL Server, MySQL experience.<\\\/li>\\n<li>Working knowledge of encryption techniques and protocols, multi-factor authentication, data protection, penetration testing, security threats.<\\\/li>\\n<li>Bachelor's Degree, or 4+ years of hands-on IT experience.<\\\/li>\\n<\\\/ul>\",\"skills\":\"<ul>\\n<li>Programming experience developing web applications with the Microsoft .NET stack and a basic knowledge of SQL.<\\\/li>\\n<li>Development experience with Angular, Node.JS, or ColdFusion.<\\\/li>\\n<li>HTML, CSS, XHTML, XML.<\\\/li>\\n<li>Hypervisors, SANs, load balancers, firewalls, and Web Application Firewall (WAF).<\\\/li>\\n<li>Experience with Higher Logic (a collaboration platform).<\\\/li>\\n<li>MongoDB, Drupal.<\\\/li>\\n<li>Mobile App Development (iOS and Android).<\\\/li>\\n<li>Episerver CMS.<\\\/li>\\n<li>Microsoft Team Foundation Server.<\\\/li>\\n<li>Speaker Management System (Planstone).<\\\/li>\\n<\\\/ul>\",\"experience_year\":3,\"employment_type\":\"Work From Home\",\"level_type\":\"Junior\",\"salary\":\"15000000\",\"total_applied\":0,\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"created_at_human\":\"2 months ago\",\"updated_at\":\"2024-10-24T09:22:21.000000Z\",\"company\":{\"id\":5,\"email\":\"sinarmas@example.com\",\"name\":\"Sinarmas\",\"user_type\":\"company\",\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"company_profile\":{\"id\":3,\"company_name\":null,\"address\":\"Jalan Merdeka\",\"location\":\"Jakarta\",\"about_company\":null,\"company_size\":10000,\"founded_in\":\"1986-01-01\",\"photo\":\"http:\\\/\\\/localhost:7700\\\/storage\\\/assets\\\/no-image.jpeg\",\"website_url\":null,\"facebook_url\":null,\"instagram_url\":null,\"twitter_url\":null,\"linked_in_url\":null,\"created_at\":\"2024-10-24T09:22:21.000000Z\",\"updated_at\":\"2024-10-24T09:22:21.000000Z\"}}}}",
                             "name": ""
                         }
                     ]
@@ -562,13 +620,17 @@
                                 {
                                     "id": "id",
                                     "key": "id",
-                                    "value": "6",
+                                    "value": "11",
                                     "description": "The ID of the post"
                                 }
                             ]
                         },
                         "method": "POST",
                         "header": [
+                            {
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                            },
                             {
                                 "key": "Content-Type",
                                 "value": "application\/json"

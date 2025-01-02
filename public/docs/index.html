@@ -77,19 +77,19 @@
                             </li>
                                                             <ul id="tocify-subheader-admin-job-title" class="tocify-subheader">
                                                                             <li class="tocify-item level-3" data-unique="admin-GETapi-v1-admin-job-title">
-                                            <a href="#admin-GETapi-v1-admin-job-title">GET api/v1/admin/job-title</a>
+                                            <a href="#admin-GETapi-v1-admin-job-title">Get list job title paginate</a>
                                         </li>
                                                                             <li class="tocify-item level-3" data-unique="admin-POSTapi-v1-admin-job-title">
-                                            <a href="#admin-POSTapi-v1-admin-job-title">POST api/v1/admin/job-title</a>
+                                            <a href="#admin-POSTapi-v1-admin-job-title">Create Job Title</a>
                                         </li>
                                                                             <li class="tocify-item level-3" data-unique="admin-GETapi-v1-admin-job-title--id-">
-                                            <a href="#admin-GETapi-v1-admin-job-title--id-">GET api/v1/admin/job-title/{id}</a>
+                                            <a href="#admin-GETapi-v1-admin-job-title--id-">Get job title by ID</a>
                                         </li>
                                                                             <li class="tocify-item level-3" data-unique="admin-PUTapi-v1-admin-job-title--id-">
-                                            <a href="#admin-PUTapi-v1-admin-job-title--id-">PUT api/v1/admin/job-title/{id}</a>
+                                            <a href="#admin-PUTapi-v1-admin-job-title--id-">Update job title by ID</a>
                                         </li>
                                                                             <li class="tocify-item level-3" data-unique="admin-DELETEapi-v1-admin-job-title--id-">
-                                            <a href="#admin-DELETEapi-v1-admin-job-title--id-">DELETE api/v1/admin/job-title/{id}</a>
+                                            <a href="#admin-DELETEapi-v1-admin-job-title--id-">Delete job title by ID</a>
                                         </li>
                                                                     </ul>
                                                                                 <li class="tocify-item level-2" data-unique="admin-post">
@@ -109,6 +109,9 @@
                                     <ul id="tocify-subheader-auth" class="tocify-subheader">
                                                     <li class="tocify-item level-2" data-unique="auth-POSTapi-v1-auth-login">
                                 <a href="#auth-POSTapi-v1-auth-login">Login</a>
+                            </li>
+                                                                                <li class="tocify-item level-2" data-unique="auth-POSTapi-v1-auth-refresh">
+                                <a href="#auth-POSTapi-v1-auth-refresh">Refresh Token</a>
                             </li>
                                                                                 <li class="tocify-item level-2" data-unique="auth-POSTapi-v1-auth-register">
                                 <a href="#auth-POSTapi-v1-auth-register">Register a user</a>
@@ -146,7 +149,7 @@
     </ul>
 
     <ul class="toc-footer" id="last-updated">
-        <li>Last updated: 23 October 2024</li>
+        <li>Last updated: 30 December 2024</li>
     </ul>
 </div>
 
@@ -170,7 +173,7 @@
                                         <p>
                     <p>CRUD Job Title</p>
                 </p>
-                                        <h2 id="admin-GETapi-v1-admin-job-title">GET api/v1/admin/job-title</h2>
+                                        <h2 id="admin-GETapi-v1-admin-job-title">Get list job title paginate</h2>
 
 <p>
 </p>
@@ -184,6 +187,7 @@
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
     --get "http://localhost:7700/api/v1/admin/job-title" \
+    --header "Authorization: Bearer &amp;lt;token&amp;gt;" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
@@ -194,6 +198,7 @@
 );
 
 const headers = {
+    "Authorization": "Bearer &amp;lt;token&amp;gt;",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -215,12 +220,13 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-x-trace-id: 43f3abf6-7dad-4161-9b0e-6b897a84d995
+x-trace-id: 14681606-d116-4715-bc32-269cd713ec44
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Authorization header is required&quot;
+    &quot;message&quot;: &quot;Wrong number of segments&quot;,
+    &quot;data&quot;: null
 }</code>
  </pre>
     </span>
@@ -272,6 +278,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="GETapi-v1-admin-job-title"
+               value="Bearer <token>"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer &lt;token&gt;</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
@@ -295,7 +312,7 @@ You can check the Dev Tools console for debugging information.</code></pre>
             </div>
                         </form>
 
-                    <h2 id="admin-POSTapi-v1-admin-job-title">POST api/v1/admin/job-title</h2>
+                    <h2 id="admin-POSTapi-v1-admin-job-title">Create Job Title</h2>
 
 <p>
 </p>
@@ -309,8 +326,13 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
     "http://localhost:7700/api/v1/admin/job-title" \
+    --header "Authorization: Bearer &amp;lt;token&amp;gt;" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"title_name\": \"corporis\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
@@ -319,13 +341,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 );
 
 const headers = {
+    "Authorization": "Bearer &amp;lt;token&amp;gt;",
     "Content-Type": "application/json",
     "Accept": "application/json",
+};
+
+let body = {
+    "title_name": "corporis"
 };
 
 fetch(url, {
     method: "POST",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -380,6 +408,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="POSTapi-v1-admin-job-title"
+               value="Bearer <token>"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer &lt;token&gt;</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
@@ -401,9 +440,21 @@ You can check the Dev Tools console for debugging information.</code></pre>
     <br>
 <p>Example: <code>application/json</code></p>
             </div>
-                        </form>
+                                <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title_name</code></b>&nbsp;&nbsp;
+<small>string</small>&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="title_name"                data-endpoint="POSTapi-v1-admin-job-title"
+               value="corporis"
+               data-component="body">
+    <br>
+<p>The title name of job. No-Example Example: <code>corporis</code></p>
+        </div>
+        </form>
 
-                    <h2 id="admin-GETapi-v1-admin-job-title--id-">GET api/v1/admin/job-title/{id}</h2>
+                    <h2 id="admin-GETapi-v1-admin-job-title--id-">Get job title by ID</h2>
 
 <p>
 </p>
@@ -416,17 +467,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:7700/api/v1/admin/job-title/odit" \
+    --get "http://localhost:7700/api/v1/admin/job-title/6" \
+    --header "Authorization: Bearer &amp;lt;token&amp;gt;" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:7700/api/v1/admin/job-title/odit"
+    "http://localhost:7700/api/v1/admin/job-title/6"
 );
 
 const headers = {
+    "Authorization": "Bearer &amp;lt;token&amp;gt;",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -448,12 +501,13 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-x-trace-id: 5a186b37-9e3a-4c1d-b859-c69e26cd7167
+x-trace-id: 8be3f776-71ed-4c4c-ab7f-1ddaf8f2c2eb
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Authorization header is required&quot;
+    &quot;message&quot;: &quot;Wrong number of segments&quot;,
+    &quot;data&quot;: null
 }</code>
  </pre>
     </span>
@@ -505,6 +559,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="GETapi-v1-admin-job-title--id-"
+               value="Bearer <token>"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer &lt;token&gt;</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
@@ -529,18 +594,18 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="GETapi-v1-admin-job-title--id-"
-               value="odit"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="GETapi-v1-admin-job-title--id-"
+               value="6"
                data-component="url">
     <br>
-<p>The ID of the job title. Example: <code>odit</code></p>
+<p>The ID of job title. No-Example Example: <code>6</code></p>
             </div>
                     </form>
 
-                    <h2 id="admin-PUTapi-v1-admin-job-title--id-">PUT api/v1/admin/job-title/{id}</h2>
+                    <h2 id="admin-PUTapi-v1-admin-job-title--id-">Update job title by ID</h2>
 
 <p>
 </p>
@@ -553,24 +618,35 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request PUT \
-    "http://localhost:7700/api/v1/admin/job-title/accusamus" \
+    "http://localhost:7700/api/v1/admin/job-title/1" \
+    --header "Authorization: Bearer &amp;lt;token&amp;gt;" \
     --header "Content-Type: application/json" \
-    --header "Accept: application/json"</code></pre></div>
+    --header "Accept: application/json" \
+    --data "{
+    \"title_name\": \"quis\"
+}"
+</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:7700/api/v1/admin/job-title/accusamus"
+    "http://localhost:7700/api/v1/admin/job-title/1"
 );
 
 const headers = {
+    "Authorization": "Bearer &amp;lt;token&amp;gt;",
     "Content-Type": "application/json",
     "Accept": "application/json",
+};
+
+let body = {
+    "title_name": "quis"
 };
 
 fetch(url, {
     method: "PUT",
     headers,
+    body: JSON.stringify(body),
 }).then(response =&gt; response.json());</code></pre></div>
 
 </span>
@@ -625,6 +701,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="PUTapi-v1-admin-job-title--id-"
+               value="Bearer <token>"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer &lt;token&gt;</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
@@ -649,18 +736,30 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
+<small>integer</small>&nbsp;
+ &nbsp;
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="PUTapi-v1-admin-job-title--id-"
+               value="1"
+               data-component="url">
+    <br>
+<p>the ID of job title. No-Example Example: <code>1</code></p>
+            </div>
+                            <h4 class="fancy-heading-panel"><b>Body Parameters</b></h4>
+        <div style=" padding-left: 28px;  clear: unset;">
+            <b style="line-height: 2;"><code>title_name</code></b>&nbsp;&nbsp;
 <small>string</small>&nbsp;
  &nbsp;
                 <input type="text" style="display: none"
-                              name="id"                data-endpoint="PUTapi-v1-admin-job-title--id-"
-               value="accusamus"
-               data-component="url">
+                              name="title_name"                data-endpoint="PUTapi-v1-admin-job-title--id-"
+               value="quis"
+               data-component="body">
     <br>
-<p>The ID of the job title. Example: <code>accusamus</code></p>
-            </div>
-                    </form>
+<p>The title name. No-Example Example: <code>quis</code></p>
+        </div>
+        </form>
 
-                    <h2 id="admin-DELETEapi-v1-admin-job-title--id-">DELETE api/v1/admin/job-title/{id}</h2>
+                    <h2 id="admin-DELETEapi-v1-admin-job-title--id-">Delete job title by ID</h2>
 
 <p>
 </p>
@@ -673,17 +772,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request DELETE \
-    "http://localhost:7700/api/v1/admin/job-title/consectetur" \
+    "http://localhost:7700/api/v1/admin/job-title/13" \
+    --header "Authorization: Bearer &amp;lt;token&amp;gt;" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:7700/api/v1/admin/job-title/consectetur"
+    "http://localhost:7700/api/v1/admin/job-title/13"
 );
 
 const headers = {
+    "Authorization": "Bearer &amp;lt;token&amp;gt;",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -745,6 +846,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="DELETEapi-v1-admin-job-title--id-"
+               value="Bearer <token>"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer &lt;token&gt;</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
@@ -769,14 +881,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
                         <h4 class="fancy-heading-panel"><b>URL Parameters</b></h4>
                     <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>id</code></b>&nbsp;&nbsp;
-<small>string</small>&nbsp;
+<small>integer</small>&nbsp;
  &nbsp;
-                <input type="text" style="display: none"
-                              name="id"                data-endpoint="DELETEapi-v1-admin-job-title--id-"
-               value="consectetur"
+                <input type="number" style="display: none"
+               step="any"               name="id"                data-endpoint="DELETEapi-v1-admin-job-title--id-"
+               value="13"
                data-component="url">
     <br>
-<p>The ID of the job title. Example: <code>consectetur</code></p>
+<p>the ID of job title. No-Example Example: <code>13</code></p>
             </div>
                     </form>
 
@@ -1199,6 +1311,127 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </div>
         </form>
 
+                    <h2 id="auth-POSTapi-v1-auth-refresh">Refresh Token</h2>
+
+<p>
+</p>
+
+
+
+<span id="example-requests-POSTapi-v1-auth-refresh">
+<blockquote>Example request:</blockquote>
+
+
+<div class="bash-example">
+    <pre><code class="language-bash">curl --request POST \
+    "http://localhost:7700/api/v1/auth/refresh" \
+    --header "Authorization: Bearer &amp;lt;token&amp;gt;" \
+    --header "Content-Type: application/json" \
+    --header "Accept: application/json"</code></pre></div>
+
+
+<div class="javascript-example">
+    <pre><code class="language-javascript">const url = new URL(
+    "http://localhost:7700/api/v1/auth/refresh"
+);
+
+const headers = {
+    "Authorization": "Bearer &amp;lt;token&amp;gt;",
+    "Content-Type": "application/json",
+    "Accept": "application/json",
+};
+
+fetch(url, {
+    method: "POST",
+    headers,
+}).then(response =&gt; response.json());</code></pre></div>
+
+</span>
+
+<span id="example-responses-POSTapi-v1-auth-refresh">
+</span>
+<span id="execution-results-POSTapi-v1-auth-refresh" hidden>
+    <blockquote>Received response<span
+                id="execution-response-status-POSTapi-v1-auth-refresh"></span>:
+    </blockquote>
+    <pre class="json"><code id="execution-response-content-POSTapi-v1-auth-refresh"
+      data-empty-response-text="<Empty response>" style="max-height: 400px;"></code></pre>
+</span>
+<span id="execution-error-POSTapi-v1-auth-refresh" hidden>
+    <blockquote>Request failed with error:</blockquote>
+    <pre><code id="execution-error-message-POSTapi-v1-auth-refresh">
+
+Tip: Check that you&#039;re properly connected to the network.
+If you&#039;re a maintainer of ths API, verify that your API is running and you&#039;ve enabled CORS.
+You can check the Dev Tools console for debugging information.</code></pre>
+</span>
+<form id="form-POSTapi-v1-auth-refresh" data-method="POST"
+      data-path="api/v1/auth/refresh"
+      data-authed="0"
+      data-hasfiles="0"
+      data-isarraybody="0"
+      autocomplete="off"
+      onsubmit="event.preventDefault(); executeTryOut('POSTapi-v1-auth-refresh', this);">
+    <h3>
+        Request&nbsp;&nbsp;&nbsp;
+                    <button type="button"
+                    style="background-color: #8fbcd4; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-tryout-POSTapi-v1-auth-refresh"
+                    onclick="tryItOut('POSTapi-v1-auth-refresh');">Try it out ⚡
+            </button>
+            <button type="button"
+                    style="background-color: #c97a7e; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-canceltryout-POSTapi-v1-auth-refresh"
+                    onclick="cancelTryOut('POSTapi-v1-auth-refresh');" hidden>Cancel 🛑
+            </button>&nbsp;&nbsp;
+            <button type="submit"
+                    style="background-color: #6ac174; padding: 5px 10px; border-radius: 5px; border-width: thin;"
+                    id="btn-executetryout-POSTapi-v1-auth-refresh"
+                    data-initial-text="Send Request 💥"
+                    data-loading-text="⏱ Sending..."
+                    hidden>Send Request 💥
+            </button>
+            </h3>
+            <p>
+            <small class="badge badge-black">POST</small>
+            <b><code>api/v1/auth/refresh</code></b>
+        </p>
+                <h4 class="fancy-heading-panel"><b>Headers</b></h4>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="POSTapi-v1-auth-refresh"
+               value="Bearer <token>"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer &lt;token&gt;</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Content-Type"                data-endpoint="POSTapi-v1-auth-refresh"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Accept</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Accept"                data-endpoint="POSTapi-v1-auth-refresh"
+               value="application/json"
+               data-component="header">
+    <br>
+<p>Example: <code>application/json</code></p>
+            </div>
+                        </form>
+
                     <h2 id="auth-POSTapi-v1-auth-register">Register a user</h2>
 
 <p>
@@ -1216,11 +1449,11 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"email\": \"lgibson@example.net\",
-    \"name\": \"irdgkzhulaqfysez\",
+    \"email\": \"swift.ericka@example.com\",
+    \"name\": \"hhcbaolroafhfdcskntxlyein\",
     \"user_type\": \"applier\",
-    \"password\": \"l2EOLssP-5m7\\\"C[\",
-    \"confirm_password\": \"praesentium\"
+    \"password\": \"&lt;V\\\\j\\\"o`Ov\",
+    \"confirm_password\": \"id\"
 }"
 </code></pre></div>
 
@@ -1236,11 +1469,11 @@ const headers = {
 };
 
 let body = {
-    "email": "lgibson@example.net",
-    "name": "irdgkzhulaqfysez",
+    "email": "swift.ericka@example.com",
+    "name": "hhcbaolroafhfdcskntxlyein",
     "user_type": "applier",
-    "password": "l2EOLssP-5m7\"C[",
-    "confirm_password": "praesentium"
+    "password": "&lt;V\\j\"o`Ov",
+    "confirm_password": "id"
 };
 
 fetch(url, {
@@ -1329,10 +1562,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="email"                data-endpoint="POSTapi-v1-auth-register"
-               value="lgibson@example.net"
+               value="swift.ericka@example.com"
                data-component="body">
     <br>
-<p>Must be a valid email address. Must not be greater than 100 characters. Example: <code>lgibson@example.net</code></p>
+<p>Must be a valid email address. Must not be greater than 100 characters. Example: <code>swift.ericka@example.com</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>name</code></b>&nbsp;&nbsp;
@@ -1340,10 +1573,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="text" style="display: none"
                               name="name"                data-endpoint="POSTapi-v1-auth-register"
-               value="irdgkzhulaqfysez"
+               value="hhcbaolroafhfdcskntxlyein"
                data-component="body">
     <br>
-<p>Must be at least 3 characters. Must not be greater than 255 characters. Example: <code>irdgkzhulaqfysez</code></p>
+<p>Must be at least 3 characters. Must not be greater than 255 characters. Example: <code>hhcbaolroafhfdcskntxlyein</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>user_type</code></b>&nbsp;&nbsp;
@@ -1364,10 +1597,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="password"                data-endpoint="POSTapi-v1-auth-register"
-               value="l2EOLssP-5m7"C["
+               value="<V\j"o`Ov"
                data-component="body">
     <br>
-<p>Example: <code>l2EOLssP-5m7"C[</code></p>
+<p>Example: <code>&lt;V\j"o</code>Ov`</p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>confirm_password</code></b>&nbsp;&nbsp;
@@ -1375,10 +1608,10 @@ Must be one of:
  &nbsp;
                 <input type="text" style="display: none"
                               name="confirm_password"                data-endpoint="POSTapi-v1-auth-register"
-               value="praesentium"
+               value="id"
                data-component="body">
     <br>
-<p>The value and <code>password</code> must match. Example: <code>praesentium</code></p>
+<p>The value and <code>password</code> must match. Example: <code>id</code></p>
         </div>
         </form>
 
@@ -1645,8 +1878,8 @@ You can check the Dev Tools console for debugging information.</code></pre>
     --header "Content-Type: application/json" \
     --header "Accept: application/json" \
     --data "{
-    \"page\": 19,
-    \"per_page\": 4
+    \"page\": 9,
+    \"per_page\": 2
 }"
 </code></pre></div>
 
@@ -1669,8 +1902,8 @@ const headers = {
 };
 
 let body = {
-    "page": 19,
-    "per_page": 4
+    "page": 9,
+    "per_page": 2
 };
 
 fetch(url, {
@@ -1691,17 +1924,98 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-x-trace-id: 1efab61f-24b3-41c5-b9c0-3dcbd38006cb
+x-trace-id: cd628898-c4d7-4838-b1f9-64f87da02c98
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;data&quot;: [],
+    &quot;data&quot;: [
+        {
+            &quot;id&quot;: 18,
+            &quot;job_title&quot;: {
+                &quot;id&quot;: 15,
+                &quot;title_name&quot;: &quot;IT Operational&quot;,
+                &quot;created_at&quot;: &quot;2024-10-24T09:22:20.000000Z&quot;,
+                &quot;updated_at&quot;: null
+            },
+            &quot;post_title&quot;: &quot;Hand Presser&quot;,
+            &quot;location&quot;: &quot;Jakarta&quot;,
+            &quot;level_type&quot;: &quot;Junior&quot;,
+            &quot;employment_type&quot;: &quot;Work From Home&quot;,
+            &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+            &quot;created_at_human&quot;: &quot;2 months ago&quot;,
+            &quot;updated_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+            &quot;company&quot;: {
+                &quot;id&quot;: 5,
+                &quot;email&quot;: &quot;sinarmas@example.com&quot;,
+                &quot;name&quot;: &quot;Sinarmas&quot;,
+                &quot;user_type&quot;: &quot;company&quot;,
+                &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+                &quot;company_profile&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;company_name&quot;: null,
+                    &quot;address&quot;: &quot;Jalan Merdeka&quot;,
+                    &quot;location&quot;: &quot;Jakarta&quot;,
+                    &quot;about_company&quot;: null,
+                    &quot;company_size&quot;: 10000,
+                    &quot;founded_in&quot;: &quot;1986-01-01&quot;,
+                    &quot;photo&quot;: &quot;http://localhost:7700/storage/assets/no-image.jpeg&quot;,
+                    &quot;website_url&quot;: null,
+                    &quot;facebook_url&quot;: null,
+                    &quot;instagram_url&quot;: null,
+                    &quot;twitter_url&quot;: null,
+                    &quot;linked_in_url&quot;: null,
+                    &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;
+                }
+            }
+        },
+        {
+            &quot;id&quot;: 1,
+            &quot;job_title&quot;: {
+                &quot;id&quot;: 14,
+                &quot;title_name&quot;: &quot;IT Infrastructure&quot;,
+                &quot;created_at&quot;: &quot;2024-10-24T09:22:20.000000Z&quot;,
+                &quot;updated_at&quot;: null
+            },
+            &quot;post_title&quot;: &quot;Library Science Teacher&quot;,
+            &quot;location&quot;: &quot;Medan&quot;,
+            &quot;level_type&quot;: &quot;Middle&quot;,
+            &quot;employment_type&quot;: &quot;Remote&quot;,
+            &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+            &quot;created_at_human&quot;: &quot;2 months ago&quot;,
+            &quot;updated_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+            &quot;company&quot;: {
+                &quot;id&quot;: 5,
+                &quot;email&quot;: &quot;sinarmas@example.com&quot;,
+                &quot;name&quot;: &quot;Sinarmas&quot;,
+                &quot;user_type&quot;: &quot;company&quot;,
+                &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+                &quot;company_profile&quot;: {
+                    &quot;id&quot;: 3,
+                    &quot;company_name&quot;: null,
+                    &quot;address&quot;: &quot;Jalan Merdeka&quot;,
+                    &quot;location&quot;: &quot;Jakarta&quot;,
+                    &quot;about_company&quot;: null,
+                    &quot;company_size&quot;: 10000,
+                    &quot;founded_in&quot;: &quot;1986-01-01&quot;,
+                    &quot;photo&quot;: &quot;http://localhost:7700/storage/assets/no-image.jpeg&quot;,
+                    &quot;website_url&quot;: null,
+                    &quot;facebook_url&quot;: null,
+                    &quot;instagram_url&quot;: null,
+                    &quot;twitter_url&quot;: null,
+                    &quot;linked_in_url&quot;: null,
+                    &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+                    &quot;updated_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;
+                }
+            }
+        }
+    ],
     &quot;pagination&quot;: {
-        &quot;current_page&quot;: 19,
-        &quot;last_page&quot;: 1,
-        &quot;per_page&quot;: 4,
-        &quot;total&quot;: 3
+        &quot;current_page&quot;: 9,
+        &quot;last_page&quot;: 25,
+        &quot;per_page&quot;: 2,
+        &quot;total&quot;: 50
     }
 }</code>
  </pre>
@@ -1816,10 +2130,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="page"                data-endpoint="GETapi-v1-posts"
-               value="19"
+               value="9"
                data-component="body">
     <br>
-<p>Example: <code>19</code></p>
+<p>Example: <code>9</code></p>
         </div>
                 <div style=" padding-left: 28px;  clear: unset;">
             <b style="line-height: 2;"><code>per_page</code></b>&nbsp;&nbsp;
@@ -1827,10 +2141,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
 <i>optional</i> &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="per_page"                data-endpoint="GETapi-v1-posts"
-               value="4"
+               value="2"
                data-component="body">
     <br>
-<p>Example: <code>4</code></p>
+<p>Example: <code>2</code></p>
         </div>
         </form>
 
@@ -1847,14 +2161,14 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request GET \
-    --get "http://localhost:7700/api/v1/posts/15" \
+    --get "http://localhost:7700/api/v1/posts/18" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:7700/api/v1/posts/15"
+    "http://localhost:7700/api/v1/posts/18"
 );
 
 const headers = {
@@ -1871,7 +2185,7 @@ fetch(url, {
 
 <span id="example-responses-GETapi-v1-posts--id-">
             <blockquote>
-            <p>Example response (404):</p>
+            <p>Example response (200):</p>
         </blockquote>
                 <details class="annotation">
             <summary style="cursor: pointer;">
@@ -1879,12 +2193,53 @@ fetch(url, {
             </summary>
             <pre><code class="language-http">cache-control: no-cache, private
 content-type: application/json
-x-trace-id: 5f198efd-0e85-4f49-8fb2-98bb9d3f7572
+x-trace-id: 99752fc9-5ba0-44cd-b9c7-fd69e13e69bc
 access-control-allow-origin: *
  </code></pre></details>         <pre>
 
 <code class="language-json" style="max-height: 300px;">{
-    &quot;message&quot;: &quot;Job 15 Not Found&quot;
+    &quot;message&quot;: &quot;Success&quot;,
+    &quot;data&quot;: {
+        &quot;id&quot;: 18,
+        &quot;post_title&quot;: &quot;Hand Presser&quot;,
+        &quot;location&quot;: &quot;Jakarta&quot;,
+        &quot;overview&quot;: &quot;As a Human Resources Coordinator, you will work within a Product Delivery Team fused with UX, engineering, product and data talent. You will help the team design beautiful interfaces that solve business challenges for our clients. We work with a number of Tier 1 banks on building web-based applications for AML, KYC and Sanctions List management workflows. This role is ideal if you are looking to segue your career into the FinTech or Big Data arenas.&quot;,
+        &quot;responsablities&quot;: &quot;&lt;ul&gt;\n&lt;li&gt;Be involved in every step of the product design cycle from discovery to developer handoff and user acceptance testing.&lt;/li&gt;\n&lt;li&gt;Work with BAs, product managers, and tech teams to lead the Product Design.&lt;/li&gt;\n&lt;li&gt;Maintain quality of the design process and ensure that when designs are translated into code they accurately reflect the design specifications.&lt;/li&gt;\n&lt;li&gt;Accurately estimate design tickets during planning sessions.&lt;/li&gt;\n&lt;li&gt;Contribute to sketching sessions involving non-designers.&lt;/li&gt;\n&lt;li&gt;Create, iterate and maintain UI deliverables including sketch files, style guides, high fidelity prototypes, micro interaction specifications, and pattern libraries.&lt;/li&gt;\n&lt;li&gt;Ensure design choices are data led by identifying assumptions to test each sprint, and work with the analysts in your team to plan moderated usability test sessions.&lt;/li&gt;\n&lt;li&gt;Design pixel perfect responsive UI&#039;s and understand that adopting common interface patterns is better for UX than reinventing the wheel.&lt;/li&gt;\n&lt;li&gt;Present your work to the wider business at Show &amp; Tell sessions.&lt;/li&gt;\n&lt;/ul&gt;&quot;,
+        &quot;requirements&quot;: &quot;&lt;ul&gt;\n&lt;li&gt;4+ years of system administration experience with the Microsoft Server platform (2012/2016, Microsoft IIS, Active Directory).&lt;/li&gt;\n&lt;li&gt;3+ years of hands-on system administration experience with AWS (EC2, Elastic Load Balancing, Multi AZ, etc.).&lt;/li&gt;\n&lt;li&gt;4+ years of SQL Server, MySQL experience.&lt;/li&gt;\n&lt;li&gt;Working knowledge of encryption techniques and protocols, multi-factor authentication, data protection, penetration testing, security threats.&lt;/li&gt;\n&lt;li&gt;Bachelor&#039;s Degree, or 4+ years of hands-on IT experience.&lt;/li&gt;\n&lt;/ul&gt;&quot;,
+        &quot;skills&quot;: &quot;&lt;ul&gt;\n&lt;li&gt;Programming experience developing web applications with the Microsoft .NET stack and a basic knowledge of SQL.&lt;/li&gt;\n&lt;li&gt;Development experience with Angular, Node.JS, or ColdFusion.&lt;/li&gt;\n&lt;li&gt;HTML, CSS, XHTML, XML.&lt;/li&gt;\n&lt;li&gt;Hypervisors, SANs, load balancers, firewalls, and Web Application Firewall (WAF).&lt;/li&gt;\n&lt;li&gt;Experience with Higher Logic (a collaboration platform).&lt;/li&gt;\n&lt;li&gt;MongoDB, Drupal.&lt;/li&gt;\n&lt;li&gt;Mobile App Development (iOS and Android).&lt;/li&gt;\n&lt;li&gt;Episerver CMS.&lt;/li&gt;\n&lt;li&gt;Microsoft Team Foundation Server.&lt;/li&gt;\n&lt;li&gt;Speaker Management System (Planstone).&lt;/li&gt;\n&lt;/ul&gt;&quot;,
+        &quot;experience_year&quot;: 3,
+        &quot;employment_type&quot;: &quot;Work From Home&quot;,
+        &quot;level_type&quot;: &quot;Junior&quot;,
+        &quot;salary&quot;: &quot;15000000&quot;,
+        &quot;total_applied&quot;: 0,
+        &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+        &quot;created_at_human&quot;: &quot;2 months ago&quot;,
+        &quot;updated_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+        &quot;company&quot;: {
+            &quot;id&quot;: 5,
+            &quot;email&quot;: &quot;sinarmas@example.com&quot;,
+            &quot;name&quot;: &quot;Sinarmas&quot;,
+            &quot;user_type&quot;: &quot;company&quot;,
+            &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+            &quot;company_profile&quot;: {
+                &quot;id&quot;: 3,
+                &quot;company_name&quot;: null,
+                &quot;address&quot;: &quot;Jalan Merdeka&quot;,
+                &quot;location&quot;: &quot;Jakarta&quot;,
+                &quot;about_company&quot;: null,
+                &quot;company_size&quot;: 10000,
+                &quot;founded_in&quot;: &quot;1986-01-01&quot;,
+                &quot;photo&quot;: &quot;http://localhost:7700/storage/assets/no-image.jpeg&quot;,
+                &quot;website_url&quot;: null,
+                &quot;facebook_url&quot;: null,
+                &quot;instagram_url&quot;: null,
+                &quot;twitter_url&quot;: null,
+                &quot;linked_in_url&quot;: null,
+                &quot;created_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;,
+                &quot;updated_at&quot;: &quot;2024-10-24T09:22:21.000000Z&quot;
+            }
+        }
+    }
 }</code>
  </pre>
     </span>
@@ -1964,10 +2319,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="GETapi-v1-posts--id-"
-               value="15"
+               value="18"
                data-component="url">
     <br>
-<p>The ID of the post Example: <code>15</code></p>
+<p>The ID of the post Example: <code>18</code></p>
             </div>
                     </form>
 
@@ -1984,17 +2339,19 @@ You can check the Dev Tools console for debugging information.</code></pre>
 
 <div class="bash-example">
     <pre><code class="language-bash">curl --request POST \
-    "http://localhost:7700/api/v1/posts/apply/6" \
+    "http://localhost:7700/api/v1/posts/apply/11" \
+    --header "Authorization: Bearer &amp;lt;token&amp;gt;" \
     --header "Content-Type: application/json" \
     --header "Accept: application/json"</code></pre></div>
 
 
 <div class="javascript-example">
     <pre><code class="language-javascript">const url = new URL(
-    "http://localhost:7700/api/v1/posts/apply/6"
+    "http://localhost:7700/api/v1/posts/apply/11"
 );
 
 const headers = {
+    "Authorization": "Bearer &amp;lt;token&amp;gt;",
     "Content-Type": "application/json",
     "Accept": "application/json",
 };
@@ -2056,6 +2413,17 @@ You can check the Dev Tools console for debugging information.</code></pre>
         </p>
                 <h4 class="fancy-heading-panel"><b>Headers</b></h4>
                                 <div style="padding-left: 28px; clear: unset;">
+                <b style="line-height: 2;"><code>Authorization</code></b>&nbsp;&nbsp;
+&nbsp;
+ &nbsp;
+                <input type="text" style="display: none"
+                              name="Authorization"                data-endpoint="POSTapi-v1-posts-apply--id-"
+               value="Bearer <token>"
+               data-component="header">
+    <br>
+<p>Example: <code>Bearer &lt;token&gt;</code></p>
+            </div>
+                                <div style="padding-left: 28px; clear: unset;">
                 <b style="line-height: 2;"><code>Content-Type</code></b>&nbsp;&nbsp;
 &nbsp;
  &nbsp;
@@ -2084,10 +2452,10 @@ You can check the Dev Tools console for debugging information.</code></pre>
  &nbsp;
                 <input type="number" style="display: none"
                step="any"               name="id"                data-endpoint="POSTapi-v1-posts-apply--id-"
-               value="6"
+               value="11"
                data-component="url">
     <br>
-<p>The ID of the post Example: <code>6</code></p>
+<p>The ID of the post Example: <code>11</code></p>
             </div>
                     </form>
 

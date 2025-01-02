@@ -2,10 +2,11 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Middleware\AuthMiddleware;
+use App\Http\Middleware\OnlyCompanyMiddleware;
 use App\Http\Controllers\API\Admin\Posts\PostController;
 use App\Http\Controllers\API\Admin\JobTitle\JobTitleController;
 
-Route::middleware(AuthMiddleware::class)->group(function() {
+Route::middleware([AuthMiddleware::class, OnlyCompanyMiddleware::class])->group(function() {
     Route::group(['prefix' => 'v1/admin'], function() {
         // Job Title
         Route::group(['prefix' => 'job-title'], function() {

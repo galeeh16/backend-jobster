@@ -4,7 +4,6 @@ namespace App\Http\Middleware;
 
 use Closure;
 use Exception;
-use App\Models\User;
 use DomainException;
 use Firebase\JWT\JWT;
 use Firebase\JWT\Key;
@@ -43,7 +42,7 @@ class AuthMiddleware
 
         try {
             $jwt = JWT::decode($token, new Key(config('app.jwt.key'), 'HS256'));
-            $id = $jwt->id; 
+            $id = $jwt->sub; 
             Auth::loginUsingId($id);  
 
             return $next($request);

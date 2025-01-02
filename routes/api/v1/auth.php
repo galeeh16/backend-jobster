@@ -8,6 +8,7 @@ use App\Http\Controllers\API\Auth\RegisterController;
 
 Route::group(['prefix' => 'v1/auth'], function() {
     Route::post('/login', [LoginController::class, 'login']);
+    Route::post('/refresh', [LoginController::class, 'refresh']);
     Route::post('/register', [RegisterController::class, 'register']);
     Route::post('/me', [ProfileController::class, 'me'])->middleware(AuthMiddleware::class);
     Route::post('/update', [ProfileController::class, 'update'])->middleware(AuthMiddleware::class);

@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers\API\Post;
 
-use Exception;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
@@ -29,7 +28,7 @@ final class PostController extends Controller
      */
     public function index(Request $request)
     {
-        usleep(300_000);
+        // usleep(300_000);
         $validator = Validator::make($request->all(), [
             'page' => 'nullable|integer|gt:0',
             'per_page' => 'nullable|integer|gt:0',
@@ -70,6 +69,7 @@ final class PostController extends Controller
     /**
      * Apply Job
      * 
+     * @header Authorization Bearer <token>
      * @urlParam id integer required The ID of the post
      */
     public function apply($id)

@@ -14,11 +14,12 @@ endpoints:
         Admin Management
       subgroup: 'Job Title'
       subgroupDescription: 'CRUD Job Title'
-      title: ''
+      title: 'Get list job title paginate'
       description: ''
       authenticated: false
       custom: []
     headers:
+      Authorization: 'Bearer <token>'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
@@ -31,11 +32,11 @@ endpoints:
     responses:
       -
         status: 401
-        content: '{"message":"Authorization header is required"}'
+        content: '{"message":"Wrong number of segments","data":null}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-trace-id: 43f3abf6-7dad-4161-9b0e-6b897a84d995
+          x-trace-id: 14681606-d116-4715-bc32-269cd713ec44
           access-control-allow-origin: '*'
         description: null
         custom: []
@@ -56,19 +57,31 @@ endpoints:
         Admin Management
       subgroup: 'Job Title'
       subgroupDescription: 'CRUD Job Title'
-      title: ''
+      title: 'Create Job Title'
       description: ''
       authenticated: false
       custom: []
     headers:
+      Authorization: 'Bearer <token>'
       Content-Type: application/json
       Accept: application/json
     urlParameters: []
     cleanUrlParameters: []
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      title_name:
+        name: title_name
+        description: 'The title name of job. No-Example'
+        required: true
+        example: corporis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      title_name: corporis
     fileParameters: []
     responses: []
     responseFields: []
@@ -88,26 +101,27 @@ endpoints:
         Admin Management
       subgroup: 'Job Title'
       subgroupDescription: 'CRUD Job Title'
-      title: ''
+      title: 'Get job title by ID'
       description: ''
       authenticated: false
       custom: []
     headers:
+      Authorization: 'Bearer <token>'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the job title.'
+        description: 'The ID of job title. No-Example'
         required: true
-        example: odit
-        type: string
+        example: 6
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: odit
+      id: 6
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []
@@ -116,11 +130,11 @@ endpoints:
     responses:
       -
         status: 401
-        content: '{"message":"Authorization header is required"}'
+        content: '{"message":"Wrong number of segments","data":null}'
         headers:
           cache-control: 'no-cache, private'
           content-type: application/json
-          x-trace-id: 5a186b37-9e3a-4c1d-b859-c69e26cd7167
+          x-trace-id: 8be3f776-71ed-4c4c-ab7f-1ddaf8f2c2eb
           access-control-allow-origin: '*'
         description: null
         custom: []
@@ -141,30 +155,42 @@ endpoints:
         Admin Management
       subgroup: 'Job Title'
       subgroupDescription: 'CRUD Job Title'
-      title: ''
+      title: 'Update job title by ID'
       description: ''
       authenticated: false
       custom: []
     headers:
+      Authorization: 'Bearer <token>'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the job title.'
+        description: 'the ID of job title. No-Example'
         required: true
-        example: accusamus
-        type: string
+        example: 1
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: accusamus
+      id: 1
     queryParameters: []
     cleanQueryParameters: []
-    bodyParameters: []
-    cleanBodyParameters: []
+    bodyParameters:
+      title_name:
+        name: title_name
+        description: 'The title name. No-Example'
+        required: true
+        example: quis
+        type: string
+        enumValues: []
+        exampleWasSpecified: false
+        nullable: false
+        custom: []
+    cleanBodyParameters:
+      title_name: quis
     fileParameters: []
     responses: []
     responseFields: []
@@ -184,26 +210,27 @@ endpoints:
         Admin Management
       subgroup: 'Job Title'
       subgroupDescription: 'CRUD Job Title'
-      title: ''
+      title: 'Delete job title by ID'
       description: ''
       authenticated: false
       custom: []
     headers:
+      Authorization: 'Bearer <token>'
       Content-Type: application/json
       Accept: application/json
     urlParameters:
       id:
         name: id
-        description: 'The ID of the job title.'
+        description: 'the ID of job title. No-Example'
         required: true
-        example: consectetur
-        type: string
+        example: 13
+        type: integer
         enumValues: []
         exampleWasSpecified: false
         nullable: false
         custom: []
     cleanUrlParameters:
-      id: consectetur
+      id: 13
     queryParameters: []
     cleanQueryParameters: []
     bodyParameters: []

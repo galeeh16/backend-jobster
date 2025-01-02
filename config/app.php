@@ -125,7 +125,7 @@ return [
 
     'jwt' => [
         'key' => env('JWT_SECRET_KEY'),
-        'ttl' => (int)env('JWT_TTL'),
-    ]
-
+        'ttl' => (int) env('ACCESS_TOKEN_TTL'),
+        'refresh_ttl' => (int) env('REFRESH_TOKEN_TTL'),
+    ],
 ];
